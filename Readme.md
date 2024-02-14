@@ -11,6 +11,15 @@
 
 這是一個為了練習 ELK 架設，以及 練習將 php laravel 透過 logstash 拆分的一個專案。
 
+|  元件 | 說明 | 訪問 url | 帳號密碼 |
+| ---- | ---- | --- | --- |
+| es01 | 資料庫-1 | x | elk/.env |
+| es02 | 資料庫-2 | x | elk/.env |
+| es03 | 資料庫-3 | x | elk/.env |
+| kibana | 圖形化介面 | 127.0.0.1:5601 | elk/.env |
+| filebeat | 採集 log的元件 | x | x |
+| logstash | log 處理的元件 | x | x |
+
 ### 架構說明
 
 ```txt
@@ -87,4 +96,4 @@ Route::get('/hello', function () {
 由於這有點麻煩，就暫時富奸吧。
 
 成果圖
-![範例圖片](./picture/ELK-logstash-laravel.png)
+![kibana-1](./picture/ELK-logstash-laravel.png)
