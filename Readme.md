@@ -85,3 +85,6 @@ Route::get('/hello', function () {
 ### 使用方式
 
 由於這有點麻煩，就暫時富奸吧。
+
+成果圖
+![範例圖片](./picture/ELK-logstash-laravel.png)
