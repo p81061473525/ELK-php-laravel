@@ -1,0 +1,35 @@
+filebeat.inputs:
+- type: filestream
+  id: my-filestream-id
+  enabled: enable
+  paths:
+  - /var/log/laravel/storage/logs/*.log
+  parsers:
+  - multiline:
+      type: pattern
+      pattern: '^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\]'
+      negate: true
+      match: after
+
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+#----------------------------------------------------------------#
+# 這一段是用來測試的....不透過 logstash 直接 filebeat 輸入到 es 裡面去
+# 因為 ELK 元件比較多
+# 有人是 原始資料 -> filebeat -> elasticsearch -> kibana
+# 有人則是 原始資料 -> filebeat -> logstash -> elasticsearch -> kibana
+# 中間如果多了一個 logstash 會增加複雜度，所以測試可以把這一段 es 的拔掉
+#----------------------------------------------------------------#
+# output.elasticsearch:
+#   hosts: ["es01-1:9200","es01-2:9200","es01-3:9200"]
+#   protocol: https
+#   username: elastic
+#   password: elasticelasticelastic
+#   ssl: 
+#     verification_mode: none 
+
+output.logstash:
+  hosts: ["logstash:5044"]
